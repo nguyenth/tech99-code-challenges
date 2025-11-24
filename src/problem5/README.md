@@ -58,6 +58,9 @@ Base path: /resources
 - DELETE /resources/:id  
   - Deletes resource by id.
 
+- SEARCH /resources/search?id=&status=
+  - list resources with simple filter
+
 Example curl:
 ```sh
 # create
