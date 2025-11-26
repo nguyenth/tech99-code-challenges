@@ -79,3 +79,15 @@ curl -X DELETE http://localhost:PORT/resources/1
 ## Noted: Validation & errors
 - Validation logic lives in the DTO files under [src/problem5/modules/resources/dto](src/problem5/modules/resources/dto).  
 - Errors are represented by [`HttpError`](src/problem5/errors.ts) and handled by [`errorHandler`](src/problem5/middlewares/error.middleware.ts).
+
+## Improvements:
+By this example for simple CRUD so I only focus to how we organize the project in module for separate of concern and creating patterns to help to spees up developement time later.
+In this project need to improve about:
+- Logging
+- Authentication is missing
+- Tracing - need for microservice
+- Metrics/Observibility
+- Caching
+- Event
+- Task queue
+

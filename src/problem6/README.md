@@ -49,11 +49,7 @@ Sequence Diagram:
     HEADER: Authorazation JWT <Token>
     ```
 
-2. Scoreboard Retrieval API
-    ```
-    GET /v1/scoreboard/top10
-    ```
-3. Scoreboard live update channel by using websocket and socket.io library to support namespace, event feature built-in
+2. Scoreboard live update channel by using websocket and socket.io library to support namespace, event feature built-in
     ```
     Endpoint: /ws/scoreboard
     Event: liveboard
@@ -103,6 +99,7 @@ class TopScoreBoard {
     latestUpdate: Date;
 }
 ```
+Once client connect to websocket successfull, Server send a payload to client for rendering scaoreboard screen firt time.
 
 ### Init a redis Pubsub: help to scale websocket (alternative we can use any message queue: kafka, rabbitmq also) but in this context i want to use redis for simple
 Using `node-redis` lib for build pubsub pattern. init pubsub info:
@@ -122,7 +119,7 @@ Init a subscriber: that subscribe to chanel `ws-scoreboard` and the function is 
 - Implements a function to increase score:
     + Implemements get score by action_id to know earned score from the action. this function could use a cache-manager lib to cache a result(using read through strategy) with a long expiry(could upto 1 day)
     + Increase score by user_id to database. user_id is extracted from header that is forwarded from API-Gateway
-    + Update score by user to redis `ZINCRBY scoreboard:global <total_score> <user_id>`
+    + Update score by user_id to redis `ZINCRBY scoreboard:global <total_score> <user_id>`
 
 - Implements a function to get top N scores from redis by using redis `ZREVRANGE scoreboard:global 0 N-1 WITHSCORES`
 - Implements a function to publish top N scores to redis `ws-scoreboard` to broadcast to
