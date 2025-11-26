@@ -4,7 +4,7 @@ Description
 - Implementation for the "three ways to sum to n" challenge. The code under this folder contains the solution and unit tests that verify correctness.
 
 Prerequisites
-- Node.js (v16+ recommended)
+- Node.js (v20+ recommended)
 - npm
 
 Install
